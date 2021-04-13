@@ -2,22 +2,36 @@ package codetoplantuml;
 
 import java.util.ArrayList;
 
-import com.github.javaparser.ast.body.VariableDeclarator;
+import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
-public class ClassVariableVisitor extends VoidVisitorAdapter<String>{
+public class ClassVariableVisitor extends VoidVisitorAdapter<String> {
 
 	public static ArrayList<String> classVariableList = new ArrayList<String>();
 
-	// クラスやインターフェースなどを取得する
 	@Override
-	public void visit(VariableDeclarator  n, String arg) {
+	public void visit(ClassOrInterfaceDeclaration n, String arg) {
+
+		// アクセス修飾子
+		ArrayList<String> accessTemp = new ArrayList<String>();
+		// アクセス修飾子以外
+		ArrayList<String> OtherTemp = new ArrayList<String>();
+		// クラス変数名
+		ArrayList<String> classVariable = new ArrayList<String>();
 
 		try {
-			System.out.println("Variable > " + n.getNameAsString());
-			//System.out.println("arg > " + arg);
+			// クラス変数のアクセス修飾子
+			accessTemp.add(n.getAccessSpecifier().asString());
 
-			//interfaceList.add();
+			// アクセス修飾子以外の修飾子
+			for (int i = 0; i < n.getModifiers().size(); i++) {
+				OtherTemp.add(n.getModifiers().get(i).toString());
+			}
+
+			// クラス変数名
+			classVariable.add(n.getNameAsString());
+
+			// TODO これらの情報をどう渡すか悩み中
 
 
 			super.visit(n, arg);
@@ -28,6 +42,5 @@ public class ClassVariableVisitor extends VoidVisitorAdapter<String>{
 		}
 
 	}
-
 
 }

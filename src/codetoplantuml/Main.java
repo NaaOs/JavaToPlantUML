@@ -38,8 +38,6 @@ public class Main extends ExtendsClass implements InterFaceClass {
 		// PlantUMLに出力
 		OutPlantUML outPlantUML = new OutPlantUML();
 		outPlantUML.outPlantUML(packageName, classList);
-		
-		System.out.println("test");
 
 	}
 

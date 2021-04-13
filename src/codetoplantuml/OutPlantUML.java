@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class OutPlantUML {
 
+	@SuppressWarnings("unchecked")
 	public void outPlantUML(String packageName, ArrayList<ClassDefinition> classes) {
 
 		try(FileWriter fw = new FileWriter("output.pu")) {

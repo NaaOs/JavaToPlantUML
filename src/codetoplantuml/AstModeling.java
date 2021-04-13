@@ -4,12 +4,6 @@ import java.util.ArrayList;
 
 import com.github.javaparser.ast.Node;
 
-import codetoplantuml.ClassDefinition;
-import codetoplantuml.ClassVariableVisitor;
-import codetoplantuml.ExtendedVisitor;
-import codetoplantuml.InterfaceVisitor;
-import codetoplantuml.MethodVisitor;
-
 public class AstModeling {
 
 	// クラスの情報が入ったリスト
@@ -57,6 +51,13 @@ public class AstModeling {
 		if (!MethodVisitor.methodList.isEmpty()) {
 			classDefinition.setMethodsList(MethodVisitor.methodList);
 		}
+
+		// クラス変数のリストが空でなければクラス定義の挿入
+		if (!ClassVariableVisitor.classVariableList.isEmpty()) {
+			classDefinition.setClassVariableList(ClassVariableVisitor.classVariableList);
+		}
+
+
 
 		classesList.add(classDefinition);
 
