@@ -6,5 +6,3 @@ JavaのソースコードからPlantUMLに出力するコード
 当プログラムの現時点での実行結果は以下の通り※Main.javaのみを解析
 
 ![現状の画像](https://github.com/NaaOs/JavaToPlantUML/blob/main/out/output/codetoplantuml.png?raw=true)
-
-クラス変数の表示などは現段階では未実装
