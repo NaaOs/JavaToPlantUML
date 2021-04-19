@@ -27,10 +27,10 @@ public class AstModeling {
 		node.accept(new ExtendedVisitor(), null);
 		// インターフェースクラス名の取得
 		node.accept(new InterfaceVisitor(), null);
+		// フィールド変数の取得
+		node.accept(new FieldVariableVisitor(), null);
 		// メソッド名の取得
 		node.accept(new MethodVisitor(), null);
-		// クラス変数の取得
-		node.accept(new ClassVariableVisitor(), null);
 
 		// 各要素をクラスリストに格納
 		ClassDefinition classDefinition = new ClassDefinition(className);
@@ -52,12 +52,10 @@ public class AstModeling {
 			classDefinition.setMethodsList(MethodVisitor.methodList);
 		}
 
-		// クラス変数のリストが空でなければクラス定義の挿入
-		if (!ClassVariableVisitor.classVariableList.isEmpty()) {
-			classDefinition.setClassVariableList(ClassVariableVisitor.classVariableList);
+		// フィールド変数のリストが空でなければクラス定義の挿入
+		if (!FieldVariableVisitor.fieldVariableList.isEmpty()) {
+			classDefinition.setFieldVariableList(FieldVariableVisitor.fieldVariableList);
 		}
-
-
 
 		classesList.add(classDefinition);
 

@@ -1,7 +1,6 @@
 package codetoplantuml;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class ClassDefinition {
@@ -20,9 +19,9 @@ public class ClassDefinition {
 	 */
 	private String extendsName;
 	/**
-	 * クラス変数リスト
+	 * フィールド変数リスト
 	 */
-	private ArrayList<String> classVariableList;
+	private ArrayList<Map> fieldVariableList;
 	/**
 	 * メソッドリスト
 	 */
@@ -33,14 +32,14 @@ public class ClassDefinition {
 	 * @param className
 	 * @param interfaceNameList
 	 * @param extendsName
-	 * @param classVariableList
+	 * @param fieldVariableList
 	 * @param methodsList
 	 */
 	public ClassDefinition(String className) {
 		this.className = className;
 		this.interfaceNameList = null;
 		this.extendsName = null;
-		this.classVariableList = null;
+		this.fieldVariableList = null;
 		this.methodsList = null;
 	}
 
@@ -53,7 +52,7 @@ public class ClassDefinition {
 		this.className = className;
 	}
 
-	public List<String> getInterfaceNameList() {
+	public ArrayList<String> getInterfaceNameList() {
 		return interfaceNameList;
 	}
 
@@ -69,12 +68,12 @@ public class ClassDefinition {
 		this.extendsName = extendsName;
 	}
 
-	public ArrayList<String> getClassVariableList() {
-		return classVariableList;
+	public ArrayList<Map> getFieldVariableList() {
+		return fieldVariableList;
 	}
 
-	public void setClassVariableList(ArrayList<String> classVariableList) {
-		this.classVariableList = classVariableList;
+	public void setFieldVariableList(ArrayList<Map> fieldVariableList) {
+		this.fieldVariableList = fieldVariableList;
 	}
 
 	public ArrayList<Map> getMethodsList() {
@@ -84,4 +83,6 @@ public class ClassDefinition {
 	public void setMethodsList(ArrayList<Map> methodsList) {
 		this.methodsList = methodsList;
 	}
+
+
 }
