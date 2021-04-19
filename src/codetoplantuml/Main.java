@@ -44,7 +44,7 @@ public class Main extends ExtendsClass implements InterFaceClass {
 	// ただのテストクラス
 	// 特に処理は書かない
 	// 作成していく時の確認用
-	static String test(String test, int testtest) {
+	private static String test(String test, int testtest) {
 		return "SSSS";
 
 	}
