@@ -21,11 +21,11 @@ public class ClassDefinition {
 	/**
 	 * フィールド変数リスト
 	 */
-	private ArrayList<Map> fieldVariableList;
+	private ArrayList<Map<String, ArrayList<String>>> fieldVariableList;
 	/**
 	 * メソッドリスト
 	 */
-	private ArrayList<Map> methodsList;
+	private ArrayList<Map<String, ArrayList<String>>> methodsList;
 
 	/**
 	 * コンストラクタ
@@ -68,20 +68,20 @@ public class ClassDefinition {
 		this.extendsName = extendsName;
 	}
 
-	public ArrayList<Map> getFieldVariableList() {
+	public ArrayList<Map<String, ArrayList<String>>> getFieldVariableList() {
 		return fieldVariableList;
 	}
 
-	public void setFieldVariableList(ArrayList<Map> fieldVariableList) {
+	public void setFieldVariableList(ArrayList<Map<String, ArrayList<String>>> fieldVariableList) {
 		this.fieldVariableList = fieldVariableList;
 	}
 
-	public ArrayList<Map> getMethodsList() {
+	public ArrayList<Map<String, ArrayList<String>>> getMethodsList() {
 		return methodsList;
 	}
 
-	public void setMethodsList(ArrayList<Map> methodsList) {
-		this.methodsList = methodsList;
+	public void setMethodsList(ArrayList<Map<String, ArrayList<String>>> methodList) {
+		this.methodsList = methodList;
 	}
 
 

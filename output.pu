@@ -1,0 +1,32 @@
+@startuml codetoplantuml
+package codetoplantuml {
+class AstModeling {
+- ArrayList<ClassDefinition> classesList
+- ArrayList<String> superClassesList
+- ArrayList<String> interfaceClassesList
+- ArrayList<Map<String,ArrayList<String>>> fieldVariablesList
+- ArrayList<Map<String,ArrayList<String>>> methodList
+- Node node
++ nodeAnalysis (  ) : void
++ getClassesList (  ) : ArrayList<ClassDefinition>
++ setClasses ( ArrayList<ClassDefinition> classesList ) : void
+}
+@startuml codetoplantuml
+package codetoplantuml {
+class ClassDefinition {
+- String className
+- ArrayList<String> interfaceNameList
+- String extendsName
+- ArrayList<Map<String,ArrayList<String>>> fieldVariableList
+- ArrayList<Map<String,ArrayList<String>>> methodsList
++ getClassName (  ) : String
++ setClassName ( String className ) : void
++ getInterfaceNameList (  ) : ArrayList<String>
++ setInterfaceNameList ( ArrayList<String> interfaceNameList ) : void
++ getExtendsName (  ) : String
++ setExtendsName ( String extendsName ) : void
++ getFieldVariableList (  ) : ArrayList<Map<String,ArrayList<String>>>
++ setFieldVariableList ( ArrayList<Map<String, ArrayList<String>>> fieldVariableList ) : void
++ getMethodsList (  ) : ArrayList<Map<String,ArrayList<String>>>
++ setMethodsList ( ArrayList<Map<String, ArrayList<String>>> methodList ) : void
+}

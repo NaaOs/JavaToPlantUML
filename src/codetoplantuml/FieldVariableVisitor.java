@@ -8,7 +8,7 @@ import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
 public class FieldVariableVisitor extends VoidVisitorAdapter<String> {
 
-	public static ArrayList<Map> fieldVariableList = new ArrayList<Map>();
+	public static ArrayList<Map<String, ArrayList<String>>> fieldVariableList = new ArrayList<Map<String, ArrayList<String>>>();
 
 	@Override
 	public void visit(FieldDeclaration n, String arg) {

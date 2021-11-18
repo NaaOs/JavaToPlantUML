@@ -24,5 +24,13 @@ public class ExtendedVisitor extends VoidVisitorAdapter<String>{
 
 	}
 
+	public ArrayList<String> getExtendedName() {
+		return extendedName;
+	}
+
+	public void setExtendedName(ArrayList<String> extendedName) {
+		this.extendedName = extendedName;
+	}
+
 
 }

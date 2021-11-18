@@ -7,17 +7,19 @@ import java.util.Map;
 
 public class OutPlantUML {
 
-	@SuppressWarnings("unchecked")
 	public void outPlantUML(String packageName, ArrayList<ClassDefinition> classes) {
 
 		try(FileWriter fw = new FileWriter("output.pu")) {
-			fw.write("@startuml " + packageName.replace("\r\n\r", ""));
-
-
-			fw.write("package " + packageName.replace("\r\n\r\n", " {\n"));
 
 			for(ClassDefinition cd : classes) {
 
+				if (cd.getFieldVariableList().isEmpty()) {
+					continue;
+				}
+
+				fw.write("@startuml " + packageName.replace("\r\n\r", ""));
+
+				fw.write("package " + packageName.replace("\r\n\r\n", " {\n"));
 				// クラスの出力
 				fw.write("class ");
 				fw.write(cd.getClassName());
@@ -25,7 +27,7 @@ public class OutPlantUML {
 
 
 				// フィールド変数の出力
-				for(Map<String, ArrayList<ClassDefinition>> field : cd.getFieldVariableList()) {
+				for(Map<String, ArrayList<String>> field : cd.getFieldVariableList()) {
 
 					if (field.get("otherModifierList").toString().contains("static")) {
 						fw.write("{static}");
@@ -61,7 +63,7 @@ public class OutPlantUML {
 				}
 
 				// メソッドの出力
-				for(Map<String, ArrayList<ClassDefinition>> method : cd.getMethodsList()) {
+				for(Map<String, ArrayList<String>> method : cd.getMethodsList()) {
 
 					if (method.toString().contains("static")) {
 						fw.write("{static} ");

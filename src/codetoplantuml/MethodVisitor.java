@@ -8,7 +8,7 @@ import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
 public class MethodVisitor extends VoidVisitorAdapter<String>{
 
-	public static ArrayList<Map> methodList = new ArrayList<Map>();
+	public static ArrayList<Map<String, ArrayList<String>>> methodList = new ArrayList<Map<String, ArrayList<String>>>();
 
 	// クラスやインターフェースなどを取得する
 	@Override

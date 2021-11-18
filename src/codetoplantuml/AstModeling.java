@@ -1,6 +1,7 @@
 package codetoplantuml;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import com.github.javaparser.ast.Node;
 
@@ -9,13 +10,25 @@ public class AstModeling {
 	// クラスの情報が入ったリスト
 	private ArrayList<ClassDefinition> classesList = new ArrayList<ClassDefinition>();
 
+	// スーパークラス名のリスト
+	private ArrayList<String> superClassesList;
+
+	// インターフェースクラス名のリスト
+	private ArrayList<String> interfaceClassesList;
+
+	// インターフェースクラス名のリスト
+	private ArrayList<Map<String, ArrayList<String>>> fieldVariablesList;
+
+	// メソッド名のリスト
+	private ArrayList<Map<String, ArrayList<String>>> methodList;
+
 	private Node node;
 
 	public AstModeling(Node node) {
 		this.node = node;
 	}
 
-	private void nodeAnalysis() {
+	public void nodeAnalysis() {
 
 		// 一応空にしておく
 		classesList.clear();
@@ -35,36 +48,54 @@ public class AstModeling {
 		// 各要素をクラスリストに格納
 		ClassDefinition classDefinition = new ClassDefinition(className);
 
+		// スーパークラスのコピー
+		superClassesList = new ArrayList<String>((ArrayList<String>) ExtendedVisitor.extendedName);
+
+		// インターフェースクラスのコピー
+		interfaceClassesList = new ArrayList<String>((ArrayList<String>) InterfaceVisitor.interfaceList);
+
+		// フィールド変数名のコピー
+		fieldVariablesList = new ArrayList<Map<String, ArrayList<String>>>((ArrayList<Map<String, ArrayList<String>>>) FieldVariableVisitor.fieldVariableList);
+
+		// スーパークラスのコピー
+		methodList = new ArrayList<Map<String, ArrayList<String>>>((ArrayList<Map<String, ArrayList<String>>>) MethodVisitor.methodList);
+
+
 		// スーパークラスのリストがからでなければクラス定義に挿入
-		if (!ExtendedVisitor.extendedName.isEmpty()) {
-			classDefinition.setExtendsName(ExtendedVisitor.extendedName.get(0).toString());
+		if (!superClassesList.isEmpty()) {
+			classDefinition.setExtendsName(superClassesList.get(0).toString());
 		}
 
 		// インターフェースのリストがからでなければクラス定義に挿入
-		if (!InterfaceVisitor.interfaceList.isEmpty()) {
+		if (!interfaceClassesList.isEmpty()) {
 			ArrayList<String> tempList = new ArrayList<String>();
-			tempList.addAll(InterfaceVisitor.interfaceList);
+			tempList.addAll(interfaceClassesList);
 			classDefinition.setInterfaceNameList(tempList);
 		}
 
-		// メソッドのリストが空でなければクラス定義の挿入
-		if (!MethodVisitor.methodList.isEmpty()) {
-			classDefinition.setMethodsList(MethodVisitor.methodList);
+		// フィールド変数のリストが空でなければクラス定義の挿入
+		if (!fieldVariablesList.isEmpty()) {
+			classDefinition.setFieldVariableList(fieldVariablesList);
 		}
 
-		// フィールド変数のリストが空でなければクラス定義の挿入
-		if (!FieldVariableVisitor.fieldVariableList.isEmpty()) {
-			classDefinition.setFieldVariableList(FieldVariableVisitor.fieldVariableList);
+		// メソッドのリストが空でなければクラス定義の挿入
+		if (!methodList.isEmpty()) {
+			classDefinition.setMethodsList(methodList);
 		}
+
+		// 各リストをクリア
+		ExtendedVisitor.extendedName.clear();
+		InterfaceVisitor.interfaceList.clear();
+		FieldVariableVisitor.fieldVariableList.clear();
+		MethodVisitor.methodList.clear();
 
 		classesList.add(classDefinition);
+
 
 	}
 
 	// getter, setter
 	public ArrayList<ClassDefinition> getClassesList() {
-		// クラスのリスト型に成形した後に返す
-		nodeAnalysis();
 		return classesList;
 	}
 
